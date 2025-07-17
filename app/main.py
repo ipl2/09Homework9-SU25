@@ -3,6 +3,9 @@ from app.config import QR_DIRECTORY
 from app.routers import qr_code, oauth  # Make sure these imports match your project structure.
 from app.services.qr_service import create_directory
 from app.utils.common import setup_logging
+from dotenv import load_dotenv    # change here 
+
+load_dotenv() # change here
 
 # This function sets up logging based on the configuration specified in your logging configuration file.
 # It's important for monitoring and debugging.

@@ -2,6 +2,20 @@
 # 3.12-slim variant is chosen for a balance between size and utility.
 FROM python:3.12-slim-bullseye as base
 
+# change here
+# Declare build-time variables
+ARG ADMIN_USER
+ARG ADMIN_PASSWORD
+ARG SECRET_KEY
+ARG ALGORITHM
+
+# Make them available as environment variables
+ENV ADMIN_USER=$ADMIN_USER
+ENV ADMIN_PASSWORD=$ADMIN_PASSWORD
+ENV SECRET_KEY=$SECRET_KEY
+ENV ALGORITHM=$ALGORITHM
+# change ends here
+
 # Set environment variables:
 # PYTHONUNBUFFERED: Prevents Python from buffering stdout and stderr
 # PYTHONFAULTHANDLER: Enables the fault handler for segfaults
