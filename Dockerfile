@@ -2,7 +2,6 @@
 # 3.12-slim variant is chosen for a balance between size and utility.
 FROM python:3.12-slim-bullseye as base
 
-# change here
 # Declare build-time variables
 ARG ADMIN_USER
 ARG ADMIN_PASSWORD

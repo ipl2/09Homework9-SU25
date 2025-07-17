@@ -11,8 +11,8 @@ from urllib.parse import urlparse, urlunparse
 # Load environment variables from .env file for security and configuration.
 load_dotenv()
 
-SECRET_KEY = os.getenv("SECRET_KEY") # change here
-ALGORITHM = os.getenv("ALGORITHM") # change here
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
 def setup_logging():
     """
@@ -31,8 +31,8 @@ def authenticate_user(username: str, password: str):
     Placeholder for user authentication logic.
     In a real application, replace this with actual authentication against a user database.
     """
-    ADMIN_USER = os.getenv("ADMIN_USER") # change here
-    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD") # change here
+    ADMIN_USER = os.getenv("ADMIN_USER")
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
     # Simple check against constants for demonstration.
     if username == ADMIN_USER and password == ADMIN_PASSWORD:
         return {"username": username}
