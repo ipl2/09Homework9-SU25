@@ -8,10 +8,10 @@ click==8.1.7
 cryptography==42.0.5
 ecdsa==0.18.0
 exceptiongroup==1.2.0
-fastapi==0.110.0
-gunicorn==21.2.0
-h11==0.14.0
-httpcore==1.0.5
+fastapi==0.116.0                   # supports starlette 0.40x
+gunicorn==23.0.0                # Upgraded from 21.2.0 to fix HTTP request smuggling vulns
+h11==0.16.0                    # Upgraded from 0.14.0 to fix chunked encoding vulns
+httpcore==1.0.9
 httpx==0.27.0
 idna==3.6
 iniconfig==2.0.0
@@ -27,13 +27,13 @@ pytest==8.1.1
 pytest-asyncio==0.23.6
 pytest-mock==3.14.0
 python-dotenv==1.0.1
-python-jose==3.3.0
-python-multipart==0.0.9
+python-jose==3.5.0              # Upgraded from 3.3.0 to fix algorithm confusion vuln
+python-multipart==0.0.18        # Upgraded from 0.0.9 to fix DoS vuln
 qrcode==7.4.2
 rsa==4.9
 six==1.16.0
 sniffio==1.3.1
-starlette==0.36.3
+starlette==0.40.0               # Upgraded from 0.36.3 to fix DoS vuln
 tomli==2.0.1
 typing_extensions==4.10.0
 uvicorn==0.29.0
