@@ -9,13 +9,6 @@ ARG ADMIN_PASSWORD
 ARG SECRET_KEY
 ARG ALGORITHM
 
-# Make them available as environment variables
-ENV ADMIN_USER=$ADMIN_USER
-ENV ADMIN_PASSWORD=$ADMIN_PASSWORD
-ENV SECRET_KEY=$SECRET_KEY
-ENV ALGORITHM=$ALGORITHM
-# change ends here
-
 # Set environment variables:
 # PYTHONUNBUFFERED: Prevents Python from buffering stdout and stderr
 # PYTHONFAULTHANDLER: Enables the fault handler for segfaults
@@ -23,29 +16,32 @@ ENV ALGORITHM=$ALGORITHM
 # PIP_DEFAULT_TIMEOUT: Avoids hanging during install
 # PIP_DISABLE_PIP_VERSION_CHECK: Suppresses the "new version" message
 # POETRY_VERSION: Specifies the version of poetry to install
-ENV PYTHONUNBUFFERED=1 \
+ENV ADMIN_USER=$ADMIN_USER \
+    ADMIN_PASSWORD=$ADMIN_PASSWORD \
+    SECRET_KEY=$SECRET_KEY \
+    ALGORITHM=$ALGORITHM \
+    PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
-    PIP_NO_CACHE_DIR=off \
+    PIP_NO_CACHE_DIR=1 \
     PIP_DEFAULT_TIMEOUT=100 \
-    PIP_DISABLE_PIP_VERSION_CHECK=on
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Set the working directory inside the container
 WORKDIR /myapp
 
 # Install system dependencies
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc libpq-dev \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends gcc libpq-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only the requirements, to cache them in Docker layer
-COPY ./requirements.txt /myapp/requirements.txt
+COPY ./requirements.txt .
 
 # Install Python dependencies
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application's code
 COPY . /myapp
